@@ -1,12 +1,18 @@
 
+# Node Python Runner
+
+*Supported by*:
+
 [![Carma](https://raw.githubusercontent.com/teamcarma/node-python-runner/master/assets/banner.png)](https://carmacarpool.com/)
 [![Carma IOS](https://raw.githubusercontent.com/teamcarma/node-python-runner/master/assets/ios.png)](https://carmacarpool.com/ios)
 [![Carma Android](https://raw.githubusercontent.com/teamcarma/node-python-runner/master/assets/android.png)](https://carmacarpool.com/android)
 
 
-# Node Python Runner
+A library that allows you to execute python code and get its output.
 
-A library that allows you to execute python code 
+This can be useful to bridge nodejs with python code. Each execution will create a python 
+process.
+
 
 ## Install
 
@@ -35,34 +41,65 @@ You can tweak the following options:
 * bin - The python binary to be used
 * env - Replace the environment variables for this python execution. Useful for PYTHONPATH, ... 
 
+
+### Inline Script
+
 ```js
 
+var Python = requrie("python-runner");
 
-var python = requrie("python-runner");
-
-python.exec(
-	"print('Carma Carpooling - Get there together')",
-	{
-		/// set which version of python to use
-		bin: "python",
-		env: {
-
-			/// set the PYTHONPATH of the current execution
-			PYTHONPATH: "...."
-
-		}
-	})
-	/// get the stdout
-	.then(function(stdout){
-
-	})
-	/// catch the error
-	.then(function(err){
-
-	});
+Python.exec(
+	"print('Carma Carpooling')" + "\n" + 
+	"print('Get there together')" + "\n"
+)
+.then(function(data){
+	console.log(data);
+});
 
 
 ```
+
+### Inline Script Using python3
+
+Python.exec(
+	"print('Carma Carpooling')" + "\n" + 
+	"print('Get there together')" + "\n",
+	{
+	 	/// set the python binary. Its 'python' by default
+		bin: "python3",
+		env: {
+			/// set the env for this execution
+			PYTHONPATH: "..."
+		}
+	}
+)
+.then(function(data){
+	console.log(data);
+})
+.catch(function(err){
+	console.log("Error", err);
+});
+
+### Script File
+
+var Python = requrie("python-runner");
+
+Python.execScript(
+	__dirname + "/example.py",
+	{
+		bin: "python3",
+		args: [ "argument" ]
+	}
+)
+.then(function(data){
+	console.log(data);
+})
+.catch(function(err){
+	console.log("Error", err);
+});
+
+
+You can always take a look at the examples folder!
 
 ## Authors
 

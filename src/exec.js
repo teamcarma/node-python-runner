@@ -50,8 +50,10 @@ var exec = function(code, options){
 	
 	python.stdout.on('close', function(code){
 
+		var result = output.join().trim();
+
         /// resolve the output
-		dfd.resolve(output.join());
+		dfd.resolve(result);
 
 	});
 
