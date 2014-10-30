@@ -63,6 +63,8 @@ Python.exec(
 
 ### Inline Script Using python3
 
+```js
+
 Python.exec(
 	"print('Carma Carpooling')" + "\n" + 
 	"print('Get there together')" + "\n",
@@ -82,7 +84,12 @@ Python.exec(
 	console.log("Error", err);
 });
 
+
+```
+
 ### Script File
+
+```js
 
 var Python = requrie("python-runner");
 
@@ -99,6 +106,9 @@ Python.execScript(
 .catch(function(err){
 	console.log("Error", err);
 });
+
+
+```
 
 
 You can always take a look at the examples folder!
