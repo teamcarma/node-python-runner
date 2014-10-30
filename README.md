@@ -18,7 +18,22 @@ npm install python-runner -g
 
 ```
 
+The only dependencies of this package are:
+
+* [Q library](https://www.npmjs.org/package/q)
+* [lodash](https://www.npmjs.org/package/lodash)
+
 ## Usage
+
+The execution function will run send every command to the python stdin interpreter returning 
+a Q promise. This will be resolved with the stdout of the python binary.
+
+The python binary will be executed with the same environment variables as its parent process.
+
+You can tweak the following options:
+
+* bin - The python binary to be used
+* env - Replace the environment variables for this python execution. Useful for PYTHONPATH, ... 
 
 ```js
 
@@ -48,3 +63,8 @@ python.exec(
 
 
 ```
+
+## Authors
+
+* [Oscar Brito](https://twitter.com/aetheon)
+* [Carma](https://twitter.com/TeamCarma)
