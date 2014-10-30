@@ -8,7 +8,9 @@
 [![Carma Android](https://raw.githubusercontent.com/teamcarma/node-python-runner/master/assets/android.png)](https://carmacarpool.com/android)
 
 
-A library that allows you to execute python code and get its output.
+
+A library that allows you to execute python code and get its output from nodejs. You can execute inline 
+commands or script files.
 
 This can be useful to bridge nodejs with python code. Each execution will create a python 
 process.
