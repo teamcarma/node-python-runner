@@ -65,6 +65,8 @@ Python.exec(
 
 ```js
 
+var Python = requrie("python-runner");
+
 Python.exec(
 	"print('Carma Carpooling')" + "\n" + 
 	"print('Get there together')" + "\n",
