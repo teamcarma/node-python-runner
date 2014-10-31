@@ -2,12 +2,19 @@
 
     "name": "python-runner",
     "description": "Library that helps you call python code on node.",
-    "version": "1.0.0",
+    "version": "1.0.1",
 
     "author": {
         "name"  : "Oscar Brito",
         "url"   : "https://twitter.com/aetheon"
     },
+
+    "keywords": [
+        "python",
+        "bridge",
+        "shell",
+        "carma"
+    ],
 
     "licenses": [
         {
