@@ -48,7 +48,7 @@ You can tweak the following options:
 
 ```js
 
-var Python = requrie("python-runner");
+var Python = require("python-runner");
 
 Python.exec(
 	"print('Carma Carpooling')" + "\n" + 
@@ -65,7 +65,7 @@ Python.exec(
 
 ```js
 
-var Python = requrie("python-runner");
+var Python = require("python-runner");
 
 Python.exec(
 	"print('Carma Carpooling')" + "\n" + 
