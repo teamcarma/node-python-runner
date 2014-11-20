@@ -2,7 +2,7 @@
 
     "name": "python-runner",
     "description": "Library that helps you call python code on node.",
-    "version": "1.0.2",
+    "version": "1.0.3",
 
     "author": {
         "name"  : "Oscar Brito",

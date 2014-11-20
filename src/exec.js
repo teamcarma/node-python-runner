@@ -4,6 +4,37 @@ var _ 		= require("lodash"),
 	Q 		= require("q"),
 	spawn 	= require('child_process').spawn;
 
+
+/**
+ *
+ * Convert to variables
+ * 
+ * @param  {Object} variables
+ * @return {Array}
+ * 
+ */
+var toVariables = function(variables){
+
+	variables = variables || {};
+	
+	var vars = [];
+	_.each(variables, function(value, name){
+		
+		if(typeof(value) == "number"){
+			vars.push( 
+				_.template("<%= name %> = <%= value %>", { name: name, value: value }));	
+		}
+		else{
+			vars.push( 
+				_.template("<%= name %> = '<%= value %>'", { name: name, value: value }));
+		}
+		
+	});
+
+	return vars;
+
+};
+
 /**
  *
  * Manages the execution of the python process. Once the code is executed the 
@@ -19,6 +50,7 @@ var exec = function(code, options){
 
 	options = options || {};
 	options.bin = options.bin || "python";
+	options.vars = options.vars || {};
 	options.env = _.extend({},
 		process.env,
 		{
@@ -56,6 +88,14 @@ var exec = function(code, options){
 		dfd.resolve(result);
 
 	});
+
+	/// convert code into string
+	if(code instanceof Array){
+		code = code.join("\n");
+	}
+
+	/// append variables to the top of the code
+	code = toVariables(options.vars).join("\n") + "\n" + code;
 
 	/// send the python instruction
 	python.stdin.write(code);

@@ -3,9 +3,15 @@
 var Python = require("../index");
 
 Python.exec(
-	"print('Carma Carpooling')" + "\n" + 
-	"print('Get there together')" + "\n",
+	[
+		"print(line1)", 
+		"print(line2)"
+	],
 	{
+		vars: {
+			"line1": "Carma Carpooling",
+			"line2": "Get there together"
+		},
 		bin: "python3"
 	}
 )

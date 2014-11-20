@@ -7,6 +7,8 @@
 [![Carma IOS](https://raw.githubusercontent.com/teamcarma/node-python-runner/master/assets/ios.png)](https://carmacarpool.com/ios)
 [![Carma Android](https://raw.githubusercontent.com/teamcarma/node-python-runner/master/assets/android.png)](https://carmacarpool.com/android)
 
+[![Dependency Status](https://gemnasium.com/teamcarma/node-python-runner.svg)](https://gemnasium.com/teamcarma/node-python-runner)
+
 
 
 A library that allows you to execute python code and get its output from nodejs. You can execute inline 
@@ -68,15 +70,27 @@ Python.exec(
 var Python = require("python-runner");
 
 Python.exec(
-	"print('Carma Carpooling')" + "\n" + 
-	"print('Get there together')" + "\n",
+	[ 
+		"print(line1)",
+		"print(line2)"
+	],
 	{
+	 	
 	 	/// set the python binary. Its 'python' by default
 		bin: "python3",
+		
+		/// python variables
+		vars: {
+			"line1": "Carma Carpooling",
+			"line2": "Get there together"
+		},
+		
+		/// python environment variables
 		env: {
 			/// set the env for this execution
 			PYTHONPATH: "..."
 		}
+
 	}
 )
 .then(function(data){
