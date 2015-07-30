@@ -8,27 +8,27 @@ var _ 		= require("lodash"),
 /**
  *
  * Convert to variables
- * 
+ *
  * @param  {Object} variables
  * @return {Array}
- * 
+ *
  */
 var toVariables = function(variables){
 
 	variables = variables || {};
-	
+
 	var vars = [];
 	_.each(variables, function(value, name){
-		
+
 		if(typeof(value) == "number"){
-			vars.push( 
-				_.template("<%= name %> = <%= value %>", { name: name, value: value }));	
+			vars.push(
+				_.template("<%= name %> = <%= value %>", { name: name, value: value }));
 		}
 		else{
-			vars.push( 
+			vars.push(
 				_.template("<%= name %> = '<%= value %>'", { name: name, value: value }));
 		}
-		
+
 	});
 
 	return vars;
@@ -37,14 +37,14 @@ var toVariables = function(variables){
 
 /**
  *
- * Manages the execution of the python process. Once the code is executed the 
+ * Manages the execution of the python process. Once the code is executed the
  * promise is resolved with the stdout of the process.
  *
  * @param {String} code
  * @param {Object} options
- * 
+ *
  * @return {Promise}
- * 
+ *
  */
 var exec = function(code, options){
 
@@ -52,13 +52,13 @@ var exec = function(code, options){
 	options.bin = options.bin || "python";
 	options.vars = options.vars || {};
 	options.env = _.extend({},
-		process.env,
 		{
 			/// set the env PYTHONPATH
 			PYTHONPATH: ""
-		}, 
+		},
+		process.env,
 		options.env);
-	
+
 
 	var dfd    = Q.defer(),
 		output = [];
@@ -79,7 +79,7 @@ var exec = function(code, options){
 	python.stderr.on('data', function(data){
 		dfd.reject(data.toString());
 	});
-	
+
 	python.stdout.on('close', function(code){
 
 		var result = output.join().trim();
